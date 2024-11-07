@@ -1,0 +1,22 @@
+# Usar la imagen base de Windows Server Core
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+# Establecer la variable de entorno para la instalación de XAMPP
+ENV XAMPP_VERSION=8.2.6
+ENV XAMPP_URL=https://www.apachefriends.org/xampp-files/${XAMPP_VERSION}/xampp-windows-x64-${XAMPP_VERSION}-installer.exe
+ENV INSTALL_DIR=C:\xampp
+
+# Descargar e instalar XAMPP
+RUN powershell -Command \
+    Invoke-WebRequest -Uri $env:XAMPP_URL -OutFile C:\xampp-installer.exe; \
+    Start-Process -FilePath C:\xampp-installer.exe -ArgumentList '/S' -Wait; \
+    Remove-Item C:\xampp-installer.exe
+
+# Exponer los puertos necesarios
+EXPOSE 80 443 3306
+
+# Copiar los archivos de htdocs al contenedor
+COPY ./htdocs /opt/lampp/htdocs
+
+# Iniciar XAMPP al ejecutar el contenedor
+CMD ["C:\\xampp\\xampp_start.exe"]
