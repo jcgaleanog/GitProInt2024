@@ -196,7 +196,7 @@ function eliminar2(valor)
 
 <div align="center" id="contenido">
   <p>&nbsp;</p>
-  <p><b>------- Ejemplo bueno Cambio por git 2025 nuevo cambio------</b></p>
+  <p><b>------- Ejemplo bueno Cambio por git 2025 nuevo nada------</b></p>
   <p>&nbsp;</p>
   <p>&nbsp;</p>
   <p>&nbsp;</p>
